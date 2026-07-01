@@ -1,0 +1,395 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Digital Parallels | Публикационная платформа</title>
+    <meta
+      name="description"
+      content="Digital Parallels: платформа для научных публикаций, личных кабинетов, институтов и совместной работы авторов."
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <button class="brand" type="button" data-screen-link="home" aria-label="Digital Parallels">
+        <img class="brand-logo" src="assets/dp.png" alt="Digital Parallels" />
+      </button>
+      <nav class="site-nav" aria-label="Основная навигация">
+        <button class="back-link" type="button" id="back-button">Назад</button>
+        <button type="button" data-screen-link="home">Об издании</button>
+        <button type="button" data-screen-link="dashboard">Кабинет</button>
+        <button class="login-link home-auth-link" type="button" data-screen-link="login">Войти</button>
+        <button class="register-link home-auth-link" type="button" data-screen-link="register">Регистрация</button>
+      </nav>
+    </header>
+
+    <main>
+      <section id="home-screen" class="screen home-screen is-active" data-screen="home">
+        <div class="hero-copy">
+          <p class="eyebrow">Dynamic Scientific Edition</p>
+          <h1>Цифровые Параллели</h1>
+          <p class="lead">
+            Электронное динамическое издание для научных и образовательных материалов:
+            авторы публикуют статьи и монографии, институты собирают работы своих
+            участников, а читатели находят материалы по разделам, авторам и организациям.
+          </p>
+          <div class="hero-actions home-guest-actions">
+            <button class="button primary" type="button" data-screen-link="register">Присоединиться</button>
+            <button class="button secondary" type="button" data-screen-link="login">У меня есть аккаунт</button>
+          </div>
+          <div class="hero-actions home-user-actions">
+            <button class="button primary" type="button" data-screen-link="dashboard">Перейти в кабинет</button>
+          </div>
+        </div>
+
+        <aside class="product-panel" aria-label="Сводка платформы">
+          <div class="panel-kicker">О чем издание</div>
+          <h2>Наука, интеллект, образование и цифровые сообщества</h2>
+          <div class="topic-list">
+            <span>Цифровое естествознание</span>
+            <span>Искусственный интеллект</span>
+            <span>Нейропсихология</span>
+            <span>Математика</span>
+            <span>Биология</span>
+            <span>Гибридные сообщества</span>
+          </div>
+          <p>
+            Платформа хранит не только публикацию, но и ее автора, институт,
+            научную ветку, историю добавления и дальнейшие обсуждения.
+          </p>
+        </aside>
+      </section>
+
+      <section id="register-screen" class="screen form-screen" data-screen="register">
+        <div class="screen-heading">
+          <p class="eyebrow">Экран 2</p>
+          <h2>Регистрация участника</h2>
+          <p>Создайте аккаунт Digital Parallels, чтобы публиковать работы и вести профиль автора.</p>
+        </div>
+        <form class="auth-card" id="register-form">
+          <label>
+            Имя
+            <input name="firstName" type="text" autocomplete="given-name" required placeholder="Анна" />
+          </label>
+          <label>
+            Фамилия
+            <input name="lastName" type="text" autocomplete="family-name" required placeholder="Иванова" />
+          </label>
+          <label>
+            Отчество
+            <input name="middleName" type="text" autocomplete="additional-name" placeholder="Петровна" />
+          </label>
+          <label>
+            Логин
+            <input name="login" type="text" autocomplete="username" required placeholder="anna_ivanova" />
+          </label>
+          <label>
+            Email
+            <input name="email" type="email" autocomplete="email" required placeholder="name@institute.org" />
+          </label>
+          <label>
+            Пароль
+            <input name="password" type="password" autocomplete="new-password" required placeholder="Минимум 4 символа" />
+          </label>
+          <label>
+            Институт
+            <input name="institute" type="text" list="institute-suggestions" required placeholder="ИТМО" />
+          </label>
+          <label>
+            Город
+            <input name="city" type="text" list="city-suggestions" required placeholder="Санкт-Петербург" />
+          </label>
+          <label>
+            Страна
+            <input name="country" type="text" list="country-suggestions" required placeholder="Россия" />
+          </label>
+          <label>
+            Роль
+            <select name="role" required>
+              <option value="Автор">Автор</option>
+              <option value="Рецензент">Рецензент</option>
+              <option value="Редактор">Редактор</option>
+              <option value="Участник клуба">Участник клуба</option>
+              <option value="Администратор института">Администратор института</option>
+            </select>
+          </label>
+          <div class="wide-field verification-row">
+            <label>
+              Код подтверждения email
+              <input name="emailCode" type="text" inputmode="numeric" required placeholder="6 цифр из письма" />
+            </label>
+            <button class="button primary" type="button" id="send-email-code">Получить код</button>
+          </div>
+          <p class="form-message" id="register-message" aria-live="polite"></p>
+          <div class="form-actions">
+            <button class="button primary" type="submit">Начать</button>
+            <button class="button secondary" type="button" data-screen-link="login">Уже есть аккаунт</button>
+          </div>
+        </form>
+        <datalist id="institute-suggestions">
+          <option value="ИТМО"></option>
+          <option value="ITMO University"></option>
+          <option value="СПбГУ"></option>
+          <option value="МГУ"></option>
+          <option value="НИУ ВШЭ"></option>
+        </datalist>
+        <datalist id="city-suggestions">
+          <option value="Санкт-Петербург"></option>
+          <option value="Москва"></option>
+          <option value="Томск"></option>
+          <option value="Новосибирск"></option>
+          <option value="Тель-Авив"></option>
+        </datalist>
+        <datalist id="country-suggestions">
+          <option value="Россия"></option>
+          <option value="Израиль"></option>
+          <option value="Казахстан"></option>
+          <option value="Беларусь"></option>
+          <option value="США"></option>
+        </datalist>
+      </section>
+
+      <section id="login-screen" class="screen form-screen" data-screen="login">
+        <div class="screen-heading">
+          <p class="eyebrow">Экран 3</p>
+          <h2>Вход в аккаунт</h2>
+          <p>Если профиль уже создан, войдите по логину и паролю.</p>
+        </div>
+        <form class="auth-card compact-card" id="login-form">
+          <label>
+            Логин
+            <input name="login" type="text" autocomplete="username" required placeholder="anna_ivanova" />
+          </label>
+          <label>
+            Пароль
+            <input name="password" type="password" autocomplete="current-password" required placeholder="Введите пароль" />
+          </label>
+          <p class="form-message" id="login-message" aria-live="polite"></p>
+          <div class="form-actions">
+            <button class="button primary" type="submit">Войти</button>
+            <button class="button secondary" type="button" data-screen-link="register">Зарегистрироваться</button>
+          </div>
+        </form>
+      </section>
+
+      <section id="dashboard-screen" class="screen dashboard-screen" data-screen="dashboard">
+        <div class="dashboard-top">
+          <div>
+            <p class="eyebrow">Экран 4</p>
+            <h2>Личный кабинет</h2>
+          </div>
+          <div class="dashboard-actions">
+            <button class="button secondary" type="button" id="add-branch-button">Добавить ветку</button>
+          </div>
+        </div>
+
+        <div class="search-row">
+          <input id="global-search" type="search" placeholder="Найти статью, автора, логин или институт" />
+          <div class="search-results" id="search-results"></div>
+        </div>
+
+        <div class="dashboard-grid">
+          <aside class="profile-card">
+            <div class="avatar" id="profile-avatar">DP</div>
+            <h3 id="profile-name">Гость</h3>
+            <dl>
+              <div>
+                <dt>Логин</dt>
+                <dd id="profile-login">-</dd>
+              </div>
+              <div>
+                <dt>Роль</dt>
+                <dd id="profile-role">-</dd>
+              </div>
+              <div>
+                <dt>Институт</dt>
+                <dd>
+                  <button class="text-link" type="button" id="profile-institute">-</button>
+                </dd>
+              </div>
+              <div>
+                <dt>Локация</dt>
+                <dd id="profile-location">-</dd>
+              </div>
+            </dl>
+            <button class="logout-button" type="button" id="logout-button">Выйти</button>
+          </aside>
+
+          <section class="works-card">
+            <div class="card-heading">
+              <h3>Мои работы</h3>
+              <span id="works-count">0 публикаций</span>
+            </div>
+            <div class="empty-state" id="empty-works">
+              <h4>Пока нет научных веток</h4>
+              <p>Создайте первую ветку, например “Биология”, “Нейропсихология” или “Математика”.</p>
+              <button class="button primary" type="button" id="empty-add-branch-button">Добавить ветку</button>
+            </div>
+            <div class="branch-list" id="branch-list"></div>
+          </section>
+        </div>
+      </section>
+
+      <section id="publish-screen" class="screen form-screen" data-screen="publish">
+        <div class="screen-heading">
+          <p class="eyebrow">Экран 5</p>
+          <h2>Создание публикации</h2>
+          <p>Выберите научную ветку, добавьте название и прикрепите файл статьи или монографии.</p>
+        </div>
+        <form class="auth-card" id="publish-form">
+          <input name="publicationId" type="hidden" />
+          <label>
+            Ветка
+            <select name="branch" id="publication-branch" required></select>
+          </label>
+          <label>
+            Новая ветка, если нужной нет
+            <input name="newBranch" type="text" placeholder="Например: Когнитивные науки" />
+          </label>
+          <label>
+            * Название публикации
+            <input name="title" type="text" required placeholder="Название статьи или монографии" />
+          </label>
+          <label class="wide-field">
+            * Аннотация
+            <textarea name="summary" rows="4" required placeholder="Коротко о материале"></textarea>
+          </label>
+          <label class="wide-field">
+            * Файл
+            <input name="file" type="file" accept=".pdf,.doc,.docx,.txt,.ppt,.pptx" />
+            <small id="current-file-note"></small>
+          </label>
+          <p class="form-message" id="publish-message" aria-live="polite"></p>
+          <div class="form-actions">
+            <button class="button secondary" type="submit" id="publish-submit-button">Опубликовать</button>
+            <button class="button primary" type="button" data-screen-link="dashboard">Вернуться в кабинет</button>
+          </div>
+        </form>
+      </section>
+
+      <section id="institute-screen" class="screen institute-screen" data-screen="institute">
+        <div class="institute-hero">
+          <p class="eyebrow">Экран 6</p>
+          <h2 id="institute-name">Страница института</h2>
+          <p id="institute-location">Город и страна будут указаны после регистрации участников.</p>
+          <a class="external-link" id="institute-link" href="#" target="_blank" rel="noreferrer">Сайт университета</a>
+        </div>
+        <div class="institute-grid">
+          <article class="stat-card">
+            <span id="institute-author-count">0</span>
+            <p>участников</p>
+          </article>
+          <article class="stat-card">
+            <span id="institute-publication-count">0</span>
+            <p>публикаций</p>
+          </article>
+          <article class="stat-card">
+            <span id="institute-branch-count">0</span>
+            <p>научных веток</p>
+          </article>
+        </div>
+        <div class="institute-content">
+          <section class="works-card">
+            <div class="card-heading">
+              <h3>Публикации института</h3>
+              <select id="institute-sort" aria-label="Сортировка публикаций">
+                <option value="date-desc">Сначала новые</option>
+                <option value="date-asc">Сначала старые</option>
+                <option value="title-asc">По алфавиту</option>
+              </select>
+            </div>
+            <div id="institute-publications"></div>
+          </section>
+          <section class="works-card">
+            <div class="card-heading">
+              <h3>Авторы</h3>
+              <button class="text-link" type="button" data-screen-link="instituteAuthors">Все авторы</button>
+            </div>
+            <div id="institute-authors"></div>
+          </section>
+        </div>
+      </section>
+
+      <section id="author-screen" class="screen dashboard-screen" data-screen="author">
+        <div class="dashboard-top">
+          <div>
+            <p class="eyebrow">Профиль автора</p>
+            <h2 id="author-name">Автор</h2>
+          </div>
+          <button class="button primary" type="button" data-screen-link="dashboard">В мой кабинет</button>
+        </div>
+        <div class="dashboard-grid">
+          <aside class="profile-card">
+            <div class="avatar" id="author-avatar">A</div>
+            <dl>
+              <div>
+                <dt>Логин</dt>
+                <dd id="author-login">-</dd>
+              </div>
+              <div>
+                <dt>Роль</dt>
+                <dd id="author-role">-</dd>
+              </div>
+              <div>
+                <dt>Институт</dt>
+                <dd><button class="text-link" type="button" id="author-institute">-</button></dd>
+              </div>
+              <div>
+                <dt>Email</dt>
+                <dd id="author-email">-</dd>
+              </div>
+            </dl>
+          </aside>
+          <section class="works-card">
+            <h3>Публикации автора</h3>
+            <div id="author-publications"></div>
+          </section>
+        </div>
+      </section>
+
+      <section id="article-screen" class="screen article-screen" data-screen="article">
+        <article class="article-card">
+          <p class="eyebrow">Статья</p>
+          <h2 id="article-title">Название публикации</h2>
+          <p class="article-meta" id="article-meta">Автор · Институт · Дата</p>
+          <p id="article-summary"></p>
+          <div class="article-actions">
+            <button class="button secondary" type="button" id="article-view-file">Просмотреть файл</button>
+            <button class="button primary" type="button" id="article-author-link">Профиль автора</button>
+            <button class="button primary" type="button" id="article-institute-link">Страница института</button>
+          </div>
+          <section class="comments-section" aria-labelledby="comments-title">
+            <div class="card-heading">
+              <h3 id="comments-title">Комментарии</h3>
+              <span id="comments-count">0 комментариев</span>
+            </div>
+            <form class="comment-form" id="comment-form">
+              <label>
+                Новый комментарий
+                <textarea name="comment" rows="4" required placeholder="Оставьте вопрос, замечание или предложение по статье"></textarea>
+              </label>
+              <button class="button secondary" type="submit">Отправить</button>
+            </form>
+            <div class="comments-list" id="comments-list"></div>
+          </section>
+        </article>
+      </section>
+
+      <section id="institute-authors-screen" class="screen institute-screen" data-screen="instituteAuthors">
+        <div class="dashboard-top">
+          <div>
+            <p class="eyebrow">Авторы университета</p>
+            <h2 id="authors-list-title">Авторы</h2>
+          </div>
+          <button class="button primary" type="button" data-screen-link="institute">Назад к университету</button>
+        </div>
+        <section class="works-card">
+          <div id="authors-list"></div>
+        </section>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>

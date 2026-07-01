@@ -1,0 +1,378 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <title>Шаблон раздела DNS</title>
+    <style>
+      @page {
+        size: A4;
+        margin: 20mm;
+      }
+
+      :root {
+        --ink: #111111;
+        --muted: #555555;
+        --line: #b8b8b8;
+        --soft: #f2f2f2;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        color: var(--ink);
+        background: #ffffff;
+        font-family: "Liberation Serif", "Times New Roman", serif;
+        font-size: 14pt;
+        line-height: 1.5;
+      }
+
+      .page {
+        position: relative;
+        min-height: 252mm;
+        padding-bottom: 16mm;
+        page-break-after: always;
+      }
+
+      .page:last-child {
+        page-break-after: auto;
+      }
+
+      .header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12mm;
+        padding-bottom: 5mm;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .chapter-label {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 9pt;
+        font-weight: 700;
+        letter-spacing: 0;
+        text-transform: uppercase;
+      }
+
+      .chapter-title {
+        margin-top: 1.5mm;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 11pt;
+        font-weight: 700;
+      }
+
+      .brand img {
+        display: block;
+        width: 34mm;
+        height: auto;
+      }
+
+      .section-number {
+        margin: 11mm 0 2mm;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 10pt;
+        font-weight: 700;
+        text-transform: uppercase;
+      }
+
+      h1,
+      h2,
+      h3 {
+        font-family: Arial, Helvetica, sans-serif;
+        color: #000000;
+        line-height: 1.12;
+      }
+
+      h1 {
+        margin: 0 0 6mm;
+        font-size: 22pt;
+      }
+
+      h2 {
+        margin: 10mm 0 3mm;
+        font-size: 15pt;
+      }
+
+      h3 {
+        margin: 6mm 0 2mm;
+        font-size: 12.5pt;
+      }
+
+      p {
+        margin: 0 0 3.2mm;
+        text-align: justify;
+        text-indent: 10mm;
+      }
+
+      a {
+        color: #000000;
+        text-decoration: underline;
+      }
+
+      .section-toc {
+        margin: 8mm 0;
+        padding: 5mm;
+        border: 1px solid var(--line);
+        background: #ffffff;
+      }
+
+      .section-toc h2 {
+        margin-top: 0;
+      }
+
+      .section-toc ol {
+        margin-bottom: 0;
+        margin-left: 0;
+        list-style: none;
+      }
+
+      .section-toc a {
+        text-decoration: none;
+      }
+
+      ul,
+      ol {
+        margin: 0 0 4mm 8mm;
+        padding: 0;
+      }
+
+      li {
+        margin-bottom: 2mm;
+      }
+
+      .lead {
+        color: #222222;
+        font-size: 14pt;
+      }
+
+      .meta-grid {
+        display: grid;
+        grid-template-columns: 44mm 1fr;
+        gap: 2mm 5mm;
+        margin: 6mm 0 8mm;
+        padding: 4mm;
+        border: 1px solid var(--line);
+      }
+
+      .meta-grid dt {
+        font-family: Arial, Helvetica, sans-serif;
+        color: var(--muted);
+        font-weight: 700;
+      }
+
+      .meta-grid dd {
+        margin: 0;
+      }
+
+      .body-placeholder {
+        min-height: 74mm;
+        padding: 0;
+        color: var(--ink);
+      }
+
+      .body-placeholder p {
+        text-indent: 10mm;
+      }
+
+      .editor-note {
+        margin: 0 0 5mm;
+        padding-left: 4mm;
+        border-left: 1px solid var(--line);
+        color: var(--muted);
+        font-size: 11pt;
+        text-indent: 0 !important;
+      }
+
+      .resource-list {
+        margin: 5mm 0 0;
+        padding: 0;
+        list-style: none;
+        counter-reset: resources;
+      }
+
+      .resource-list li {
+        display: grid;
+        grid-template-columns: 56mm 1fr;
+        gap: 3mm;
+        margin-bottom: 2.6mm;
+        padding-bottom: 2.6mm;
+        border-bottom: 1px solid var(--line);
+        counter-increment: resources;
+      }
+
+      .resource-list li::before {
+        content: counter(resources) ". " attr(data-name);
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: 700;
+      }
+
+      .resource-link {
+        overflow-wrap: anywhere;
+      }
+
+      .resource-note {
+        margin-top: 6mm;
+        color: var(--muted);
+        font-size: 11pt;
+        text-indent: 0;
+      }
+
+      .literature {
+        margin-left: 7mm;
+      }
+
+      .footer {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 8mm;
+        padding-top: 4mm;
+        border-top: 1px solid var(--line);
+        color: var(--muted);
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 8.5pt;
+      }
+
+      .page-mark {
+        white-space: nowrap;
+      }
+    </style>
+  </head>
+  <body>
+    <section class="page">
+      <header class="header">
+        <div>
+          <div class="chapter-label">Коллективная монография «[название монографии]»</div>
+          <div class="chapter-title">Глава [номер главы]. [Название главы]</div>
+        </div>
+        <div class="brand">
+          <img src="web/assets/dp.png" alt="Digital Parallels" />
+        </div>
+      </header>
+
+      <div class="section-number">Раздел [номер раздела]</div>
+      <h1>[Название раздела / статьи]</h1>
+      <p class="lead">
+        Здесь размещается вводный абзац раздела. Он должен объяснять тему,
+        связь с главой монографии и значение материала для проекта
+          «Цифровые Параллели».
+      </p>
+
+      <dl class="meta-grid">
+        <dt>Статус версии</dt>
+        <dd>Черновик / редакционная версия / опубликованная версия</dd>
+        <dt>Дата обновления</dt>
+        <dd>ДД.ММ.ГГГГ</dd>
+        <dt>Постоянная ссылка</dt>
+        <dd><a href="#">ссылка на опубликованный раздел</a></dd>
+      </dl>
+
+      <nav class="section-toc" aria-label="Оглавление раздела">
+        <h2>Оглавление раздела</h2>
+        <ol>
+          <li><a href="#purpose">1. Назначение раздела</a></li>
+          <li><a href="#main-text">2. Основной текст</a></li>
+          <li><a href="#resources">3. Связанные ресурсы</a></li>
+          <li><a href="#literature">4. Список литературы</a></li>
+        </ol>
+      </nav>
+
+      <h2 id="purpose">1. Назначение раздела</h2>
+      <p>
+        В этом месте автор размещает постановку проблемы, краткое описание
+        предметной области и объяснение того, почему материал включается в
+        соответствующую главу DNS.
+      </p>
+
+      <h2 id="main-text">2. Основной текст</h2>
+      <div class="body-placeholder">
+        <p class="editor-note">
+          Ниже приводится место для текста раздела. В финальной версии эта
+          служебная пометка удаляется редактором или автоматическим генератором.
+        </p>
+        <p>
+          Здесь размещается основной текст статьи/раздела. Рекомендуемая
+          структура: постановка проблемы, методологическая рамка, основные
+          тезисы, примеры или кейсы, связь с другими разделами DNS, выводы.
+        </p>
+        <p>
+          Для длинных материалов допускаются подразделы 2.1, 2.2 и далее.
+          Иллюстрации, таблицы и схемы должны иметь подписи и ссылки в тексте.
+        </p>
+      </div>
+
+      <footer class="footer">
+        <div>
+          Авторы и резюме: <a href="#">ссылка на общий список авторов DNS</a>
+        </div>
+        <div class="page-mark">DNS · раздел</div>
+      </footer>
+    </section>
+
+    <section class="page">
+      <header class="header">
+        <div>
+          <div class="chapter-label">Коллективная монография «[название монографии]»</div>
+          <div class="chapter-title">Связанные ресурсы раздела</div>
+        </div>
+        <div class="brand">
+          <img src="web/assets/dp.png" alt="Digital Parallels" />
+        </div>
+      </header>
+
+      <h2 id="resources">3. Связанные ресурсы</h2>
+      <p>
+        Раздел должен содержать ссылки на ресурсы проекта, которые относятся
+        именно к этому материалу: опубликованная версия, обсуждение,
+        материалы для скачивания, мероприятия по теме и общий список авторов.
+      </p>
+
+      <ol class="resource-list">
+        <li data-name="Опубликованный раздел">
+          <span class="resource-link"><a href="#">URL полного текста раздела</a></span>
+        </li>
+        <li data-name="Оглавление DNS">
+          <span class="resource-link"><a href="#">URL актуального оглавления монографии</a></span>
+        </li>
+        <li data-name="Дискуссия по теме">
+          <span class="resource-link"><a href="#">URL обсуждения раздела</a></span>
+        </li>
+        <li data-name="Мероприятия DP-Club">
+          <span class="resource-link"><a href="#">URL лекций, семинаров и встреч по теме</a></span>
+        </li>
+        <li data-name="Материалы раздела">
+          <span class="resource-link"><a href="#">URL хранилища файлов и приложений</a></span>
+        </li>
+        <li data-name="Авторы и резюме">
+          <span class="resource-link"><a href="#">URL общего списка авторов DNS</a></span>
+        </li>
+      </ol>
+
+      <p class="resource-note">
+        При подготовке финальной версии вместо технических заглушек указываются
+        действующие ссылки на ресурсы проекта.
+      </p>
+
+      <h2 id="literature">4. Список литературы</h2>
+      <ol class="literature">
+        <li>Автор А. А. Название источника. Город: Издательство, год.</li>
+        <li>Автор Б. Б. Название статьи // Название издания. Год. №. С. xx–yy.</li>
+        <li>Электронный ресурс: название, URL, дата обращения.</li>
+      </ol>
+
+      <footer class="footer">
+        <div>
+          Авторы и резюме: <a href="#">ссылка на общий список авторов DNS</a>
+        </div>
+        <div class="page-mark">DNS · раздел</div>
+      </footer>
+    </section>
+  </body>
+</html>

@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Digital Parallels | Клуб и цифровая монография</title>
+    <meta
+      name="description"
+      content="Digital Parallels: клуб, открытые анонсы, дискуссии и материалы цифровой монографии."
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="#start" aria-label="Digital Parallels">
+        <img src="assets/logo-transparent.png" alt="Digital Parallels" />
+      </a>
+      <nav class="nav" aria-label="Основная навигация">
+        <a href="#telegram">Как участвовать</a>
+        <a href="#chapters">Разделы</a>
+        <a href="#registry">Фиксация</a>
+        <a class="nav-action" href="https://t.me/d_p_club" target="_blank" rel="noreferrer">Канал клуба</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" id="start">
+        <div class="hero-copy">
+          <p class="eyebrow">Digital Parallels / Клуб-DP</p>
+          <h1>Цифровые Параллели: клуб, обсуждения и материалы цифровой монографии</h1>
+          <p class="lead">
+            Здесь можно следить за новостями клуба, вступить в дискуссии и предложить
+            свой материал для одного из разделов монографии.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="https://t.me/d_p_club" target="_blank" rel="noreferrer">Открыть канал</a>
+            <a class="button secondary" href="https://t.me/dp_discussion_reg_bot" target="_blank" rel="noreferrer">Войти в дискуссии</a>
+            <a class="button ghost" href="https://t.me/dp_registration_bot" target="_blank" rel="noreferrer">Отправить материал</a>
+          </div>
+        </div>
+
+        <aside class="signal-panel" aria-label="Как устроен вход">
+          <div class="signal-card active">
+            <span>01</span>
+            <strong>Новости клуба</strong>
+            <p>Анонсы, аннотации, эфиры, обновления оглавления и приглашения к обсуждению.</p>
+          </div>
+          <div class="signal-card">
+            <span>02</span>
+            <strong>Дискуссии</strong>
+            <p>Короткая регистрация по ФИО открывает доступ к группе обсуждений.</p>
+          </div>
+          <div class="signal-card">
+            <span>03</span>
+            <strong>Публикации</strong>
+            <p>Авторы могут передать редактируемые материалы для выбранного раздела.</p>
+          </div>
+        </aside>
+      </section>
+
+      <section class="flow-section" id="telegram">
+        <div class="section-head">
+          <p class="eyebrow">Простой маршрут</p>
+          <h2>Выберите, как хотите участвовать</h2>
+          <p>
+            Все основные действия доступны в Telegram: можно читать открытые объявления,
+            подключиться к обсуждениям или отправить материал в редакционную работу.
+          </p>
+        </div>
+
+        <div class="flow-grid">
+          <article class="flow-card">
+            <div class="card-number">1</div>
+            <h3>Публичный канал</h3>
+            <p>Открытая лента клуба: новости, аннотации, стримы, обновления оглавления и ссылки на главы.</p>
+            <a href="https://t.me/d_p_club" target="_blank" rel="noreferrer">Перейти в канал</a>
+          </article>
+          <article class="flow-card">
+            <div class="card-number">2</div>
+            <h3>Вход в дискуссии</h3>
+            <p>Укажите ФИО, чтобы присоединиться к группе, где обсуждаются темы клуба и материалы монографии.</p>
+            <a href="https://t.me/dp_discussion_reg_bot" target="_blank" rel="noreferrer">Зарегистрироваться</a>
+          </article>
+          <article class="flow-card">
+            <div class="card-number">3</div>
+            <h3>Публикация материалов</h3>
+            <p>Передайте текст, презентацию или другой редактируемый материал и выберите подходящую главу.</p>
+            <a href="https://t.me/dp_registration_bot" target="_blank" rel="noreferrer">Отправить материал</a>
+          </article>
+        </div>
+      </section>
+
+      <section class="chapters-section" id="chapters">
+        <div class="section-head compact">
+          <p class="eyebrow">Динамическая монография</p>
+          <h2>Разделы монографии</h2>
+        </div>
+        <div class="chapters-toolbar">
+          <label for="chapter-search">Найти главу</label>
+          <input id="chapter-search" type="search" placeholder="ИИ, образование, транспорт, финтех..." />
+        </div>
+        <div class="chapters-list" id="chapters-list"></div>
+      </section>
+
+      <section class="registry-section" id="registry">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Подтверждение материала</p>
+            <h2>Система фиксирует отправку материала</h2>
+          </div>
+          <p>
+            При загрузке файла сохраняются дата, раздел и SHA256-хэш. Эти данные помогают
+            автору и редакции сверить версию материала после отправки.
+          </p>
+        </div>
+        <div class="registry-grid">
+          <article class="registry-status">
+            <span class="status-dot" id="hash-status-dot"></span>
+            <strong id="hash-status-title">Проверяем прием материалов</strong>
+            <p id="hash-status-text">Когда система доступна, новые материалы будут фиксироваться после отправки.</p>
+          </article>
+          <article class="registry-list-card">
+            <div class="registry-card-head">
+              <h3>Недавно переданные материалы</h3>
+              <button type="button" id="refresh-registry">Обновить</button>
+            </div>
+            <div class="registry-list" id="registry-list">
+              <p class="empty-state">Пока нет переданных материалов.</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="join-section">
+        <div>
+          <p class="eyebrow">Присоединиться</p>
+          <h2>Начните с того, что вам сейчас нужно</h2>
+        </div>
+        <div class="join-actions">
+          <a class="button primary" href="https://t.me/d_p_club" target="_blank" rel="noreferrer">Читать канал</a>
+          <a class="button secondary" href="https://t.me/dp_discussion_reg_bot" target="_blank" rel="noreferrer">Зарегистрироваться для дискуссий</a>
+          <a class="button ghost" href="https://t.me/dp_registration_bot" target="_blank" rel="noreferrer">Передать материал</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <span>Digital Parallels</span>
+      <span>Клуб, дискуссии и материалы цифровой монографии.</span>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
